@@ -80,3 +80,13 @@ class ProfileViewAPI(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ["username", "full_name", "profile_image"]
+
+
+"""
+Login Serializer 
+"""
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True, style={"input_type": "password"})
