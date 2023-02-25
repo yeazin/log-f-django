@@ -64,7 +64,7 @@ class Profile(TimeStampMixin):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=200, null=True, blank=True)
     profile_image = models.ImageField(
-        upload_to="profile_images/", null=True, blank=False
+        upload_to="media/profile_images/", null=True, blank=False
     )
 
     def __str__(self):
