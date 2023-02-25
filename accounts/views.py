@@ -10,6 +10,7 @@ from accounts.serializers import (
     LoginSerializer,
 )
 
+from rest_framework.views import APIView
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import generics, status, serializers
@@ -115,3 +116,15 @@ class APILoginView(generics.GenericAPIView):
             {"access_token": str(refresh.access_token), "refresh_token": str(refresh)},
             status=status.HTTP_200_OK,
         )
+
+
+"""
+User Logout View 
+"""
+
+
+class APILogoutView(APIView):
+    def get(self, request, format=None):
+        # deleting the auth token
+        request.user.auth_token.delete()
+        return Response(status=status.HTTP_200_OK)
