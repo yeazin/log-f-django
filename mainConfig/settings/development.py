@@ -14,7 +14,11 @@ DATABASES = {
 }
 
 ## APP installed
-INSTALLED_APPS += ["accounts.apps.AccountsConfig"]
+INSTALLED_APPS += [
+    # third party apps
+    "rest_framework",
+    "accounts.apps.AccountsConfig",
+]
 
 ## Custom User model Config
 AUTH_USER_MODEL = "accounts.User"

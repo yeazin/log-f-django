@@ -68,7 +68,7 @@ class Profile(TimeStampMixin):
     )
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
     class Meta:
         verbose_name_plural = "Profile"
