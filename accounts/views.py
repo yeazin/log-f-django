@@ -34,6 +34,11 @@ class ProfileUpdate(generics.RetrieveUpdateAPIView):
         return self.update(request, *args, **kwargs)
 
     def update(self, request, *args, **kwargs):
+        """
+        if the user has image and no need to update then
+        the image will be last one
+        otherwise the image will be updated by given image
+        """
         instance = self.get_object()
         if not request.data.get("profile_image", None):
             data = request.data.copy()
