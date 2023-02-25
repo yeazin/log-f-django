@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+from base.models import TimeStampMixin
 
 
 class CustomUserManager(BaseUserManager):
@@ -48,7 +49,26 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.username)
 
     class Meta:
         indexes = [models.Index(fields=["id", "username"])]
+
+
+"""
+Profile models 
+"""
+
+
+class Profile(TimeStampMixin):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=200, null=True, blank=True)
+    profile_image = models.ImageField(
+        upload_to="profile_images/", null=True, blank=False
+    )
+
+    def __str__(self):
+        return self.user
+
+    class Meta:
+        verbose_name_plural = "Profile"
